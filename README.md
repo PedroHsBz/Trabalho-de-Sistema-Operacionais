@@ -15,6 +15,7 @@
 * Carlos Eduardo Ferreira Sales
 * Lucas
 
+Projeto realizado em conjunto e optamos por enviar o projeto ja pronto
 ---
 
 ## 📌 Sobre o Projeto
