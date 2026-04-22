@@ -239,13 +239,10 @@ public static void executarPrioridades(List<Processo> processos) {
 
 ## Saída e Monitoramento Visual 📊
 
-Para que a simulação não ocorra apenas "por debaixo dos panos", o sistema conta com dois métodos focados em exibir o comportamento do escalonador de forma clara para o usuário e para o avaliador.
 ---
 ## Monitoramento Ciclo a Ciclo (imprimirTimeline) 👁️
 O que é e como funciona?
-Este método atua como uma "fotografia" do estado do sistema a cada segundo. Ele é invocado no final de cada iteração do laço while dos algoritmos de escalonamento.
-CPU em Foco: Ele recebe o tempoAtual e o processo atual (vencedor daquele ciclo) e imprime quem está na CPU e qual é o seu novo tempo restante.
-Fila de Espera: Em seguida, o método varre a lista de processos disponíveis (processo). Se o processo da lista não for o que está na CPU (p != atual), ele é impresso como "em espera". Isso comprova visualmente a fila de prontos e evidencia momentos de preempção.
+Esse metodo e responsavel por exibir os detalhes do o que esta acontecendo em cada ciclo do processo, onde temos o tempo do ciclo, processo na CPU (junto o tempo restante) e os processes que estão esperando.
 
 ```Java
 // Localizado em Algoritimos.java
