@@ -112,7 +112,7 @@ public class Menu {
                             + "A prioridade de 4 possui um quantum de 4 ciclos de executação.\n"
                             + "A prioridade de 3 possui um quantum de 3 ciclos de executação.\n"
                             + "A prioridade de 2 possui um quantum de 2 ciclos de executação.\n"
-                            + "A prioridade de 1 possui um quantum de 1 ciclos de executação.\n");
+                            + "A prioridade de 1 possui um quantum de 1 ciclos de executação.");
                    
 
                     for (int i = 0; i < numProcessos; i++) {
