@@ -20,9 +20,9 @@
 ## 📌 Sobre o Projeto
 Este projeto é um trabalho avaliativo focado em aplicar algoritmos vistos em sala através de uma simulação prática. O programa foi desenvolvido em **Java** (escolha livre do grupo) e é executado via console.
 
-### Status de Implementação dos Algoritmos
-* 1️⃣ **SRT (Shortest Remaining Time):** Implementado e funcional.
-* 2️⃣ **Escalonamento por Prioridades:** Pendente/Em desenvolvimento.
+### Algoritmos
+* 1️⃣ **SRT (Shortest Remaining Time):** I
+* 2️⃣ **Escalonamento por Prioridades:**
 
 ---
 
