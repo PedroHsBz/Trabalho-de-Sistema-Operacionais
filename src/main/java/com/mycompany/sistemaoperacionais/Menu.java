@@ -107,7 +107,7 @@ public class Menu {
                     //new ArrayList<>(): cria a lista na memória
                     List<Processo> processos = new ArrayList<>();
 
-                    System.out.println("OBS: As prioridades são estaticas ele não iram alterar ao decorrer do escalonamento.\n"
+                    System.out.println("OBS: As prioridades são estaticas elas não iram alterar ao decorrer do escalonamento.\n"
                             + "A prioridade de 5 possui um quantum de 5 ciclos de executação.\n"
                             + "A prioridade de 4 possui um quantum de 4 ciclos de executação.\n"
                             + "A prioridade de 3 possui um quantum de 3 ciclos de executação.\n"
