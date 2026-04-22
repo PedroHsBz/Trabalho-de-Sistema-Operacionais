@@ -239,6 +239,7 @@ public static void executarPrioridades(List<Processo> processos) {
 
 ## Monitoramento Ciclo a Ciclo (imprimirTimeline) 👁️
 O que é e como funciona?
+
 Esse metodo e responsavel por exibir os detalhes do o que esta acontecendo em cada ciclo do processo, onde temos o tempo do ciclo, processo na CPU (junto o tempo restante) e os processes que estão esperando.
 
 ```Java
@@ -274,6 +275,7 @@ public static void imprimirTimeline(int tempoAtual, List<Processo> processo, Pro
 
 ## O Gráfico de Gantt em Texto (imprimirVetorFinal) 📈
 O que é e como funciona?
+
 Ao término de toda a simulação (quando o laço de execução acaba), o sistema precisa fornecer um panorama geral de tudo o que aconteceu.
 
 O método recebe a lista historico (que foi preenchida a cada segundo com o nome do processo executado ou - para ócio) e formata esses dados como uma tabela de dupla entrada, simulando um Gráfico de Gantt no próprio terminal. A linha superior marca o instante de tempo, e a linha inferior mostra exatamente quem estava ocupando o processador naquele segundo.
