@@ -23,7 +23,7 @@ Projeto realizado em conjunto e optamos por enviar o projeto ja pronto
 Este projeto é um trabalho avaliativo focado em aplicar algoritmos vistos em sala através de uma simulação prática. O programa foi desenvolvido em **Java** (escolha livre do grupo) e é executado via console.
 
 ### Algoritmos
-* 1️⃣ **SRT (Shortest Remaining Time):** I
+* 1️⃣ **SRT (Shortest Remaining Time):** 
 * 2️⃣ **Escalonamento por Prioridades:**
 
 ---
