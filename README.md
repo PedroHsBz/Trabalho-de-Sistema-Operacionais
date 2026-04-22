@@ -61,59 +61,57 @@ O SRT é a versão preemptiva do SJF. A cada unidade de tempo, o sistema reavali
 
 ```// Localizado em Algoritimos.java
 \\ Implementação do algoritmo SRT
-public class Algoritimos {
-    
+
     public static void executarSRT(List<Processo> processos) {
-        int tempoAtual = 0;             // Representa o tempo de cpu (0..5)
-        int processosConcluidos = 0;    // Contador para sabermos quando a simulação deve acabar
-        int n = processos.size();       // Total de processos cadastrados
-        
-        List<String> historicoExecucao = new ArrayList<>(); // Vai guardar quem ocupou a CPU a cada ciclo (segundo)
+        int tempoAtual = 0;
+        int processosConcluidos = 0;
+        int n = processos.size();       // Total de processos 
+
+        List<String> historicoExecucao = new ArrayList<>(); // Vai guardar quem ocupou a CPU a cada ciclo 
 
         while (processosConcluidos < n) {
-            List<Processo> processo = new ArrayList<>(); // Fila de Prontos (quem já chegou e pode rodar)
+            List<Processo> processo = new ArrayList<>(); // Fila de processo (quem já chegou e pode rodar)
             Processo atual = null;                       // Ponteiro para o processo que vai ganhar a CPU agora
 
-            // 1. FILTRAGEM (Quem está na fila?)
+            // 1. FILTRAGEM (Quais processos está na fila?)
             for (Processo p : processos) {
                 if (p.tempoChegada <= tempoAtual && p.tempoRestante > 0) {
-                    processo.add(p); 
+                    processo.add(p);
                 }
             }
 
             // 2. Escolher o menor tempo restante
             if (!processo.isEmpty()) {
-                atual = processo.get(0); 
-                
-                // Compara o candidato atual com os outros da fila para achar o verdadeiro "menor tempo"
+                atual = processo.get(0);
+
+                // Compara o candidato atual com os outros da fila para achar o processo com "menor tempo restante"
                 for (Processo p : processo) {
                     if (p.tempoRestante < atual.tempoRestante) {
-                        atual = p; 
+                        atual = p;
                     }
                 }
 
                 // 3. EXECUÇÃO:
-                atual.tempoRestante--; // Desconta 1 unidade de tempo da tarefa do processo
+                atual.tempoRestante--; // Desconta 1 unidade de tempo restante do processo
                 historicoExecucao.add(atual.nome); // Registra no histórico que ele rodou neste segundo
 
                 // 4. VERIFICAÇÃO DE FIM DE PROCESSO:
                 if (atual.tempoRestante == 0) {
-                    processosConcluidos++; // Se zerou, o processo acabou! Aumenta o contador.
+                    processosConcluidos++; // Se tempo restante e 0, o processo acabou! Aumenta o contador.
                 }
             } else {
-                // Se a fila de prontos estiver vazia, ninguém quer a CPU. O sistema fica ocioso.
+                // Se a fila de processos estiver vazia. O sistema fica ocioso.
                 historicoExecucao.add("-"); // "-" vai representar ociosidade na timeline final
             }
 
             // Mostra que acabou de acontecer neste ciclo exato
             imprimirTimeline(tempoAtual, processo, atual);
-            tempoAtual++; 
+            tempoAtual++;
         }
 
         System.out.println("\nTodos os processos foram concluídos no tempo " + tempoAtual + "!");
         imprimirVetorFinal(historicoExecucao);
     }
-}
 
 ```
 ---

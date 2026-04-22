@@ -28,15 +28,15 @@ public class Algoritimos {
     public static void executarSRT(List<Processo> processos) {
         int tempoAtual = 0;
         int processosConcluidos = 0;
-        int n = processos.size();       // Total de processos cadastrados
+        int n = processos.size();       // Total de processos
 
-        List<String> historicoExecucao = new ArrayList<>(); // Vai guardar quem ocupou a CPU a cada ciclo (segundo)
+        List<String> historicoExecucao = new ArrayList<>(); // Vai guardar quem ocupou a CPU a cada ciclo
 
         while (processosConcluidos < n) {
-            List<Processo> processo = new ArrayList<>(); // Fila de Prontos (quem já chegou e pode rodar)
+            List<Processo> processo = new ArrayList<>(); // Fila de processo (quem já chegou e pode rodar)
             Processo atual = null;                       // Ponteiro para o processo que vai ganhar a CPU agora
 
-            // 1. FILTRAGEM (Quem está na fila?)
+            // 1. FILTRAGEM (Quais processos está na fila?)
             for (Processo p : processos) {
                 if (p.tempoChegada <= tempoAtual && p.tempoRestante > 0) {
                     processo.add(p);
@@ -47,7 +47,7 @@ public class Algoritimos {
             if (!processo.isEmpty()) {
                 atual = processo.get(0);
 
-                // Compara o candidato atual com os outros da fila para achar o verdadeiro "menor tempo"
+                // Compara o candidato atual com os outros da fila para achar o processo com "menor tempo restante"
                 for (Processo p : processo) {
                     if (p.tempoRestante < atual.tempoRestante) {
                         atual = p;
@@ -55,15 +55,15 @@ public class Algoritimos {
                 }
 
                 // 3. EXECUÇÃO:
-                atual.tempoRestante--; // Desconta 1 unidade de tempo da tarefa do processo
+                atual.tempoRestante--; // Desconta 1 unidade de tempo restante do processo
                 historicoExecucao.add(atual.nome); // Registra no histórico que ele rodou neste segundo
 
                 // 4. VERIFICAÇÃO DE FIM DE PROCESSO:
                 if (atual.tempoRestante == 0) {
-                    processosConcluidos++; // Se zerou, o processo acabou! Aumenta o contador.
+                    processosConcluidos++; // Se tempo restante e 0, o processo acabou! Aumenta o contador.
                 }
             } else {
-                // Se a fila de prontos estiver vazia, ninguém quer a CPU. O sistema fica ocioso.
+                // Se a fila de processos estiver vazia. O sistema fica ocioso.
                 historicoExecucao.add("-"); // "-" vai representar ociosidade na timeline final
             }
 
@@ -184,13 +184,14 @@ public class Algoritimos {
     }
 
     public static void imprimirTimeline(int tempoAtual, List<Processo> processo, Processo atual) {
+
         System.out.println("Tempo: " + tempoAtual);
         if (atual != null) {
             System.out.println("  [CPU] -> " + atual.nome + " (Restante após este ciclo: " + atual.tempoRestante + ")");
             System.out.print("  [Processos em espera] -> ");
             boolean temPronto = false;
 
-            // Exibe quem ficou na vontade, esperando na fila enquanto outro rodava
+            // Exibe quem ficou esperando na fila enquanto outro rodava
             for (Processo p : processo) {
                 if (p != atual) {
                     System.out.print(p.nome + "(Restante: " + p.tempoRestante + ")  ");
