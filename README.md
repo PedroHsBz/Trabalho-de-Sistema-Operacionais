@@ -235,11 +235,8 @@ public static void executarPrioridades(List<Processo> processos) {
 ```
 ---
 
-
-
 ## Saída e Monitoramento Visual 📊
 
----
 ## Monitoramento Ciclo a Ciclo (imprimirTimeline) 👁️
 O que é e como funciona?
 Esse metodo e responsavel por exibir os detalhes do o que esta acontecendo em cada ciclo do processo, onde temos o tempo do ciclo, processo na CPU (junto o tempo restante) e os processes que estão esperando.
