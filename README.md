@@ -247,7 +247,8 @@ public class Menu {
    
 O que é e como funciona?
 
-O SRT é a versão preemptiva do SJF. A cada unidade de tempo, o sistema reavalia a fila e concede a CPU ao processo que possui o menor tempo restante de execução. Se um novo processo chegar com um tempo menor que o atual, ocorre a preempção.
+O método executarSRT implementa a lógica de Tempo Restante Mais Curto Primeiro . 
+Ele funciona através de um ciclo de 4 etapas que se repete até que todos os processos sejam concluídos. Resumindo: Filtra (Prontos) ➔ Escolhe (Menor Tempo) ➔ Executa (1 segundo) ➔ Avança o Relógio (tempoAtual++). 
 
 ```// Localizado em Algoritimos.java
 \\ Implementação do algoritmo SRT
