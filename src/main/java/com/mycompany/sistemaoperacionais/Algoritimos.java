@@ -203,6 +203,9 @@ public class Algoritimos {
             }
 
             System.out.println("\n  ---------------------------------------");
+        } else {
+            System.out.println("  [CPU] -> Ocioso");
+            System.out.println("  ---------------------------------------");
         }
     }
 
