@@ -2,7 +2,7 @@ package com.mycompany.sistemaoperacionais;
 
 /**
  *
- * @author pedro henrique, carlos, lucas
+ * @author pedro, carlos, lucas
  */
 public class SistemaOperacionais {
 
