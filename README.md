@@ -13,7 +13,9 @@
 
 * Pedro Henrique da Silva Bazilio 
 * Carlos Eduardo Ferreira Sales
-* Lucas
+* Lucas Daniel Cunha
+
+Projeto realizado em conjunto e optamos por enviar o projeto ja pronto
 
 ---
 
