@@ -248,7 +248,7 @@ public class Menu {
 O que é e como funciona?
 
 O método executarSRT implementa a lógica de Tempo Restante Mais Curto Primeiro . 
-Ele funciona através de um ciclo de 4 etapas que se repete até que todos os processos sejam concluídos. Resumindo: Filtra (Prontos) ➔ Escolhe (Menor Tempo) ➔ Executa (1 segundo) ➔ Avança o Relógio (tempoAtual++). 
+Ele funciona através de um ciclo de 4 etapas que se repete até que todos os processos sejam concluídos. Resumindo: Filtra (Processo) ➔ Escolhe (Menor Tempo) ➔ Executa (1 ciclo) ➔ Avança o Relógio (tempoAtual++). 
 
 ```// Localizado em Algoritimos.java
 \\ Implementação do algoritmo SRT
