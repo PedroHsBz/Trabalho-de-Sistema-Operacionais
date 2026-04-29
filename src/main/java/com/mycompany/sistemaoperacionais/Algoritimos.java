@@ -28,27 +28,27 @@ public class Algoritimos {
     public static void executarSRT(List<Processo> processos) {
         int tempoAtual = 0;
         int processosConcluidos = 0;
-        int n = processos.size();       // Total de processos
+        int totalProcessos = processos.size();       // Total de processos
 
         List<String> historicoExecucao = new ArrayList<>(); // Vai guardar quem ocupou a CPU a cada ciclo
 
-        while (processosConcluidos < n) {
-            List<Processo> processo = new ArrayList<>(); // Fila de processo (quem já chegou e pode rodar)
+        while (processosConcluidos < totalProcessos) {
+            List<Processo> filaProcesso = new ArrayList<>(); // Fila de processo (quem já chegou e pode rodar)
             Processo atual = null;                       // Ponteiro para o processo que vai ganhar a CPU agora
 
             // 1. FILTRAGEM (Quais processos está na fila?)
             for (Processo p : processos) {
                 if (p.tempoChegada <= tempoAtual && p.tempoRestante > 0) {
-                    processo.add(p);
+                    filaProcesso.add(p);
                 }
             }
 
             // 2. Escolher o menor tempo restante
-            if (!processo.isEmpty()) {
-                atual = processo.get(0);
+            if (!filaProcesso.isEmpty()) {
+                atual = filaProcesso.get(0);
 
                 // Compara o candidato atual com os outros da fila para achar o processo com "menor tempo restante"
-                for (Processo p : processo) {
+                for (Processo p : filaProcesso) {
                     if (p.tempoRestante < atual.tempoRestante) {
                         atual = p;
                     }
@@ -68,7 +68,7 @@ public class Algoritimos {
             }
 
             // Mostra que acabou de acontecer neste ciclo exato
-            imprimirTimeline(tempoAtual, processo, atual);
+            imprimirTimeline(tempoAtual, filaProcesso, atual);
             tempoAtual++;
         }
 
@@ -183,23 +183,23 @@ public class Algoritimos {
         imprimirVetorFinal(historicoExecucao);
     }
 
-    public static void imprimirTimeline(int tempoAtual, List<Processo> processo, Processo atual) {
+    public static void imprimirTimeline(int tempoAtual, List<Processo> filaProcesso, Processo atual) {
 
         System.out.println("Tempo: " + tempoAtual);
         if (atual != null) {
             System.out.println("  [CPU] -> " + atual.nome + " (Restante após este ciclo: " + atual.tempoRestante + ")");
             System.out.print("  [Processos em espera] -> ");
-            boolean temPronto = false;
+            boolean temProcesso = false;
 
             // Exibe quem ficou esperando na fila enquanto outro rodava
-            for (Processo p : processo) {
+            for (Processo p : filaProcesso) {
                 if (p != atual) {
                     System.out.print(p.nome + "(Restante: " + p.tempoRestante + ")  ");
-                    temPronto = true;
+                    temProcesso = true;
                 }
             }
 
-            if (!temPronto) {
+            if (!temProcesso) {
                 System.out.print("Nenhum outro processo na fila.");
             }
 
