@@ -66,6 +66,7 @@ public class Algoritimos {
                 historicoExecucao.add("-"); // "-" vai representar ociosidade na timeline final
             }
 
+
             // Mostra que acabou de acontecer neste ciclo exato
             System.out.println("Tempo: " + tempoAtual);
             if (atual != null) {
