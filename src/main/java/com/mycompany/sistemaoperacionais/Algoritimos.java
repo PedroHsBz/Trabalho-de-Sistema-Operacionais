@@ -28,15 +28,15 @@ public class Algoritimos {
     public static void executarSRT(List<Processo> processos) {
         int tempoAtual = 0;
         int processosConcluidos = 0;
-        int totalProcessos = processos.size();       // Total de processos
+        int totalProcessos = processos.size();
 
         List<String> historicoExecucao = new ArrayList<>(); // Vai guardar quem ocupou a CPU a cada ciclo
 
         while (processosConcluidos < totalProcessos) {
-            List<Processo> filaProcesso = new ArrayList<>(); // Fila de processo (quem já chegou e pode rodar)
-            Processo atual = null;                       // Ponteiro para o processo que vai ganhar a CPU agora
+            List<Processo> filaProcesso = new ArrayList<>();
+            Processo atual = null;
 
-            // 1. FILTRAGEM (Quais processos está na fila?)
+            // 1. Filtrar (Quais processos está na fila?)
             for (Processo p : processos) {
                 if (p.tempoChegada <= tempoAtual && p.tempoRestante > 0) {
                     filaProcesso.add(p);
@@ -47,7 +47,6 @@ public class Algoritimos {
             if (!filaProcesso.isEmpty()) {
                 atual = filaProcesso.get(0);
 
-                // Compara o candidato atual com os outros da fila para achar o processo com "menor tempo restante"
                 for (Processo p : filaProcesso) {
                     if (p.tempoRestante < atual.tempoRestante) {
                         atual = p;
@@ -56,7 +55,7 @@ public class Algoritimos {
 
                 // 3. EXECUÇÃO:
                 atual.tempoRestante--; // Desconta 1 unidade de tempo restante do processo
-                historicoExecucao.add(atual.nome); // Registra no histórico que ele rodou neste segundo
+                historicoExecucao.add(atual.nome); // Registra no histórico que ele rodou neste ciclo
 
                 // 4. VERIFICAÇÃO DE FIM DE PROCESSO:
                 if (atual.tempoRestante == 0) {
@@ -68,7 +67,29 @@ public class Algoritimos {
             }
 
             // Mostra que acabou de acontecer neste ciclo exato
-            imprimirTimeline(tempoAtual, filaProcesso, atual);
+            System.out.println("Tempo: " + tempoAtual);
+            if (atual != null) {
+                System.out.println("  [CPU] -> " + atual.nome + " (Restante após este ciclo: " + atual.tempoRestante + ")");
+                System.out.print("  [Processos em espera] -> ");
+                boolean temProcesso = false;
+
+                // Exibe quem ficou esperando na fila enquanto outro rodava
+                for (Processo p : filaProcesso) {
+                    if (p != atual) {
+                        System.out.print(p.nome + "(Restante: " + p.tempoRestante + ")  ");
+                        temProcesso = true;
+                    }
+                }
+
+                if (!temProcesso) {
+                    System.out.print("Nenhum outro processo na fila.");
+                }
+
+                System.out.println("\n  ---------------------------------------");
+            } else {
+                System.out.println("  [CPU] -> Ocioso");
+                System.out.println("  ---------------------------------------");
+            }
             tempoAtual++;
         }
 
@@ -181,33 +202,6 @@ public class Algoritimos {
 
         System.out.println("\nTodos os processos foram concluídos no tempo " + tempoAtual + "!");
         imprimirVetorFinal(historicoExecucao);
-    }
-
-    public static void imprimirTimeline(int tempoAtual, List<Processo> filaProcesso, Processo atual) {
-
-        System.out.println("Tempo: " + tempoAtual);
-        if (atual != null) {
-            System.out.println("  [CPU] -> " + atual.nome + " (Restante após este ciclo: " + atual.tempoRestante + ")");
-            System.out.print("  [Processos em espera] -> ");
-            boolean temProcesso = false;
-
-            // Exibe quem ficou esperando na fila enquanto outro rodava
-            for (Processo p : filaProcesso) {
-                if (p != atual) {
-                    System.out.print(p.nome + "(Restante: " + p.tempoRestante + ")  ");
-                    temProcesso = true;
-                }
-            }
-
-            if (!temProcesso) {
-                System.out.print("Nenhum outro processo na fila.");
-            }
-
-            System.out.println("\n  ---------------------------------------");
-        } else {
-            System.out.println("  [CPU] -> Ocioso");
-            System.out.println("  ---------------------------------------");
-        }
     }
 
     public static void imprimirVetorFinal(List<String> historico) {
